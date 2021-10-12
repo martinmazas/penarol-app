@@ -3,9 +3,7 @@ import RecipeReviewCard from './RecipeViewCard';
 import axios from "axios";
 import { LanguageContext } from './LanguageContext';
 // import Pagination from '@mui/material/Pagination';
-import Cookies from 'universal-cookie';
 import { useHistory } from "react-router-dom";
-const cookies = new Cookies();
 
 const styles = {
     wrapper: {
