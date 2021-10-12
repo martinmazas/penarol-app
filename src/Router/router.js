@@ -23,8 +23,8 @@ export default function ReactRouter() {
             <Switch>
                 {!document.cookie && <Route path="/login" component={Login} />}
                 <Route exact path="/" component={History} />
-                <Route exact path="/history" component={History} />
-                <Route exact path="/players" render={() => <Player setValues={setValues} />} />
+                <Route path="/history" component={History} />
+                <Route path="/players" render={() => <Player setValues={setValues} />} />
                 <Route path="/stadium" component={Stadium} />
                 <Route path="/titles" component={Championships} />
                 {document.cookie && <Route path="/addPlayer" render={() => <AddPlayer mode={'addPlayer'} values={values} setValues={setValues} />} />}
