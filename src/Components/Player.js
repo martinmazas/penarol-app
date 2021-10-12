@@ -33,12 +33,8 @@ export default function Player(props) {
     // const [playersPerPage, setPlayersPerPage] = useState(9);
 
     useEffect(() => {
-        getPlayers();
-    }, [])
-
-    useEffect(() => {
         setNavValues(1);
-        // getPlayers();
+        getPlayers();
     }, [setNavValues]);
 
     const getPlayers = () => {
