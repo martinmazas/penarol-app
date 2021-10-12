@@ -3,6 +3,9 @@ import RecipeReviewCard from './RecipeViewCard';
 import axios from "axios";
 import { LanguageContext } from './LanguageContext';
 // import Pagination from '@mui/material/Pagination';
+import Cookies from 'universal-cookie';
+import { useHistory } from "react-router-dom";
+const cookies = new Cookies();
 
 const styles = {
     wrapper: {
@@ -27,6 +30,7 @@ export default function Player(props) {
     const { setNavValues } = useContext(LanguageContext);
     const { setValues } = props;
     const [search, setSearch] = useState('');
+    const history = useHistory();
     // const [currentPage, setCurrentPage] = useState(1);
     // const [playersPerPage, setPlayersPerPage] = useState(9);
 
@@ -37,6 +41,7 @@ export default function Player(props) {
 
     const getPlayers = () => {
         axios.get(`https://penarol-app.herokuapp.com/api/player`)
+        // axios.get(`http://localhost:3000/api/player`)
             .then((res) => {
                 setPlayers(res.data);
                 setFilteredPlayers(res.data);
@@ -46,8 +51,13 @@ export default function Player(props) {
     }
 
     const deletePlayer = (id) => {
+        console.log(id);
         axios.delete(`https://penarol-app.herokuapp.com/api/player/${id}`, { withCredentials: true })
-            .then(docs => setPlayers(docs.data))
+        // axios.delete(`http://localhost:3000/api/player/${id}`, { withCredentials: true })
+            .then(docs => {
+                setPlayers(docs.data);
+                history.push("/players");
+            })
             .catch(err => console.log(err));
     }
 
@@ -65,7 +75,7 @@ export default function Player(props) {
         if (filter) {
             setFilteredPlayers(filter);
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [search])
 
     return (

@@ -14,6 +14,7 @@ export default function Header() {
         setNavValues(0);
         mode === 'logout' ?
             axios.get(`https://penarol-app.herokuapp.com/api/user/logout`)
+            // axios.get(`http://localhost:3000/api/user/logout`)
                 .then(docs => {
                     if (docs.data === 'Successfully logout') {
                         cookies.remove('token');
@@ -24,9 +25,13 @@ export default function Header() {
             history.push("/login");
     }
 
+    const initialPage = () => {
+        history.push('/');
+    }
+
     return (
         <div className="header" style={styles.root}>
-            <img style={styles.logo} src="https://www.xn--pearol-xwa.org/plantillas/images/logo_1.svg" alt="Club Atlético Peñarol" />
+            <img onClick={initialPage} style={styles.logo} src="https://www.xn--pearol-xwa.org/plantillas/images/logo_1.svg" alt="Club Atlético Peñarol" />
             <div className="languages" style={styles.languages}>
                 <img onClick={() => setLanguage('spanish')} src="https://www.countryflags.io/es/flat/32.png" alt="spainFlag" />
                 <img onClick={() => setLanguage('english')} src="https://www.countryflags.io/us/flat/32.png" alt="usaFlag" />
