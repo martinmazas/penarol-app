@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import Header from './Components/Header';
+import React, { useState, useMemo } from 'react';
 import './App.css';
+import Navigation from './Components/Navigation';
+import { LanguageContext } from './Components/LanguageContext';
+import ReactRouter from './Router/router';
+import Footer from './Components/Footer';
 
 function App() {
+  const [language, setLanguage] = useState('english');
+  const [navValues, setNavValues] = useState(0);
+  const languageProvider = useMemo(() => ({ language, setLanguage, navValues, setNavValues }), [language, setLanguage, navValues, setNavValues]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <LanguageContext.Provider value={languageProvider} >
+        <Header />
+        <Navigation />
+        <ReactRouter />
+        <Footer />
+      </LanguageContext.Provider>
     </div>
   );
 }

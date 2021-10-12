@@ -1,0 +1,15 @@
+.MuiTypography-h5 {
+    font-size: 22px !important;
+}
+
+.international-cups>li,
+.national-cups>li {
+    color: white;
+}
+
+.international-cups>li>a,
+.national-cups>li>a {
+    color: white;
+    margin-left: 10px;
+    word-wrap: normal;
+}
