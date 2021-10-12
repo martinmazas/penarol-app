@@ -50,8 +50,10 @@ export default function Player(props) {
         axios.delete(`https://penarol-app.herokuapp.com/api/player/${id}`, { withCredentials: true })
         // axios.delete(`http://localhost:3000/api/player/${id}`, { withCredentials: true })
             .then(docs => {
-                console.log(docs.data);
-                setPlayers(docs.data);
+                if(docs.data === 'Successfully delete player') {
+                    getPlayers();
+                }
+                // setPlayers(docs.data);
             })
             .catch(err => console.log(err));
     }
