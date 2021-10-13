@@ -14,7 +14,7 @@ export default function Header() {
         setNavValues(0);
         mode === 'logout' ?
             axios.get(`https://penarol-app.herokuapp.com/api/user/logout`)
-            // axios.get(`http://localhost:3000/api/user/logout`)
+                // axios.get(`http://localhost:3000/api/user/logout`)
                 .then(docs => {
                     if (docs.data === 'Successfully logout') {
                         cookies.remove('token');
@@ -29,13 +29,17 @@ export default function Header() {
         history.push('/');
     }
 
+    window.onbeforeunload = function () {
+        cookies.remove('token');
+    }
+
     return (
         <div className="header" style={styles.root}>
             <img onClick={initialPage} style={styles.logo} src="https://www.xn--pearol-xwa.org/plantillas/images/logo_1.svg" alt="Club Atlético Peñarol" />
             <div className="languages" style={styles.languages}>
                 <img onClick={() => setLanguage('spanish')} src="https://www.countryflags.io/es/flat/32.png" alt="spainFlag" />
                 <img onClick={() => setLanguage('english')} src="https://www.countryflags.io/us/flat/32.png" alt="usaFlag" />
-                <button onClick={() => handleClick(document.cookie?'logout':'login')} style={{ backgroundColor: 'black', color: "white", marginTop: 0 }}>
+                <button onClick={() => handleClick(document.cookie ? 'logout' : 'login')} style={{ backgroundColor: 'black', color: "white", marginTop: 0 }}>
                     {document.cookie ? language === 'english' ? "Log out" : "Salir" : language === 'english' ? "Log in" : "Entrar"}
                 </button>
             </div>
