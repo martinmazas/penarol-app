@@ -48,7 +48,7 @@ export default function Login() {
             .then(res => {
                 if (res.data.msg === 'Successfully connected') {
                     history.push("/history");
-                    cookies.set('token', res.data.token, { path: '/', maxAge: 300, secure: true});
+                    cookies.set('token', res.data.token, { path: '/', maxAge: 6000, secure: true});
                 }
             })
             .catch(err => console.log(err));
