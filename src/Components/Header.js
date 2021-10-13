@@ -29,10 +29,6 @@ export default function Header() {
         history.push('/');
     }
 
-    window.onbeforeunload = function () {
-        cookies.remove('token');
-    }
-
     return (
         <div className="header" style={styles.root}>
             <img onClick={initialPage} style={styles.logo} src="https://www.xn--pearol-xwa.org/plantillas/images/logo_1.svg" alt="Club Atlético Peñarol" />
