@@ -75,7 +75,7 @@ export default function RecipeReviewCard(props) {
       {document.cookie ?
         <ButtonGroup color="inherit" fullWidth={true} variant="contained" aria-label="outlined primary button group">
           <Button onClick={editPlayer}>{language === 'english' ? "Edit" : "Editar"}</Button>
-          <Button color="error" href='/players' onClick={() => deletePlayer(player._id)} >{language === 'english' ? "Delete" : "Eliminar"}</Button>
+          <Button color="error" href='/players' onClick={() => deletePlayer(player._id, player.name)} >{language === 'english' ? "Delete" : "Eliminar"}</Button>
         </ButtonGroup> : null
       }
       <DialogText header={"Edit player"} open={open} setOpen={setOpen} message={message} />
