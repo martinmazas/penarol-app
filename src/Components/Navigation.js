@@ -28,9 +28,9 @@ function Navigation() {
                 >
                     <Tab href="/history" label={language === 'english' ? "History" : "Historia"} />
                     <Tab href="/players" label={language === 'english' ? "Players" : "Jugadores"} />
-                    {/* <Tab href="/stadium" label={language === 'english' ? "Stadium" : "Estadio"} /> */}
+                    <Tab href="/stadium" label={language === 'english' ? "Stadium" : "Estadio"} />
                     <Tab href="/titles" label={language === 'english' ? "Titles" : "Titulos"} />
-                    <Tab href="/matches" label={language === 'english' ? "Matches" : "Partidos"} />
+                    {/* <Tab href="/matches" label={language === 'english' ? "Matches" : "Partidos"} /> */}
                     {document.cookie ? <Tab href="/addPlayer" label={language === 'english' ? "Add/Edit player" : "Agregar/Editar jugador"} /> : null}
                 </Tabs>
             </Paper>
