@@ -14,7 +14,7 @@ export default function Header() {
         setNavValues(0);
         mode === 'logout' ?
             axios.get(`https://penarol-app.herokuapp.com/api/user/logout`)
-                // axios.get(`http://localhost:3000/api/user/logout`)
+            // axios.get(`http://localhost:3000/api/user/logout`)
                 .then(docs => {
                     if (docs.data === 'Successfully logout') {
                         cookies.remove('token');
@@ -35,10 +35,10 @@ export default function Header() {
             <div className="languages" style={styles.languages}>
                 <img onClick={() => setLanguage('spanish')} src="https://www.countryflags.io/es/flat/32.png" alt="spainFlag" />
                 <img onClick={() => setLanguage('english')} src="https://www.countryflags.io/us/flat/32.png" alt="usaFlag" />
-                <button onClick={() => handleClick(document.cookie ? 'logout' : 'login')} style={{ backgroundColor: 'black', color: "white", marginTop: 0 }}>
-                    {document.cookie ? language === 'english' ? "Log out" : "Salir" : language === 'english' ? "Log in" : "Entrar"}
-                </button>
             </div>
+            <button onClick={() => handleClick(document.cookie ? 'logout' : 'login')} style={styles.login}>
+                {document.cookie ? language === 'english' ? "Log out" : "Salir" : language === 'english' ? "Log in" : "Entrar"}
+            </button>
         </div>
     );
 }
@@ -59,6 +59,14 @@ const styles = {
         display: 'inline',
         position: 'absolute',
         top: 0,
+        right: 60,
+    },
+    login: {
+        backgroundColor: 'black', 
+        color: "white", 
+        top: 6, 
+        position: 'absolute', 
+        display: 'inline', 
         right: 0
     }
 }
