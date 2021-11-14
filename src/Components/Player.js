@@ -22,8 +22,8 @@ const styles = {
 }
 
 export default function Player(props) {
-    const [players, setPlayers] = useState(null);
-    const [filteredPlayers, setFilteredPlayers] = useState(null);
+    // const [players, setPlayers] = useState(null);
+    // const [filteredPlayers, setFilteredPlayers] = useState(null);
     const { setNavValues } = useContext(LanguageContext);
     const { setValues } = props;
     const [search, setSearch] = useState('');
@@ -32,19 +32,20 @@ export default function Player(props) {
 
     useEffect(() => {
         setNavValues(1);
-        getPlayers();
+        props.getPlayers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [setNavValues]);
 
-    const getPlayers = () => {
-        axios.get(`https://penarol-app.herokuapp.com/api/player`)
-        // axios.get(`http://localhost:3000/api/player`)
-            .then((res) => {
-                setPlayers(res.data);
-                setFilteredPlayers(res.data);
-                // setPlayersPerPage(res.data.length);
-            })
-            .catch(err => console.log(err));
-    }
+    // const getPlayers = () => {
+    //     // axios.get(`https://penarol-app.herokuapp.com/api/player`)
+    //     axios.get(`http://localhost:3000/api/player`)
+    //         .then((res) => {
+    //             setPlayers(res.data);
+    //             setFilteredPlayers(res.data);
+    //             // setPlayersPerPage(res.data.length);
+    //         })
+    //         .catch(err => console.log(err));
+    // }
 
     const deletePlayer = (id, name) => {
         axios.delete(`https://penarol-app.herokuapp.com/api/player/${id}&${name}`, { withCredentials: true })
@@ -68,9 +69,9 @@ export default function Player(props) {
     }
 
     useEffect(() => {
-        const filter = players ? players.filter(player => player.name.toLowerCase().includes(search.search.toLowerCase())) : null;
+        const filter = props.players ? props.players.filter(player => player.name.toLowerCase().includes(search.search.toLowerCase())) : null;
         if (filter) {
-            setFilteredPlayers(filter);
+            props.setFilteredPlayers(filter);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [search])
@@ -80,7 +81,7 @@ export default function Player(props) {
             <div style={styles.wrapper}>
                 {/* <TextField onChange={handleSearch} label='Search' fullWidth={true} style={styles.field} id="name-outlined-basic" /> */}
                 <input style={styles.field} type="search" placeholder="Search a player..." onChange={(e) => handleSearch(e)} />
-                {filteredPlayers ? filteredPlayers.map(player => (
+                {props.filteredPlayers ? props.filteredPlayers.map(player => (
                     <RecipeReviewCard key={player._id} player={player} deletePlayer={deletePlayer} setValues={setValues} />
                 )) : <p style={{ color: 'white' }}>Charging...</p>}
                 <div style={{ backgroundColor: "yellow" }} >
