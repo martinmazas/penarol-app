@@ -24,8 +24,8 @@ export default function ReactRouter() {
     const [players, setPlayers] = useState(null);
     const [filteredPlayers, setFilteredPlayers] = useState(null);
     const getPlayers = () => {
-        // axios.get(`https://penarol-app.herokuapp.com/api/player`)
-        axios.get(`http://localhost:3000/api/player`)
+        axios.get(`https://penarol-app.herokuapp.com/api/player`)
+        // axios.get(`http://localhost:3000/api/player`)
             .then((res) => {
                 setPlayers(res.data);
                 setFilteredPlayers(res.data);
