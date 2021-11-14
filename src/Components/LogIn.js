@@ -43,8 +43,8 @@ export default function Login() {
     };
 
     const handleSubmit = () => {
-        axios.post(`https://penarol-app.herokuapp.com/api/user/${values.email}`, values, { withCredentials: true })
-        // axios.post(`http://localhost:3000/api/user/${values.email}`, values, { withCredentials: true })
+        // axios.post(`https://penarol-app.herokuapp.com/api/user/${values.email}`, values, { withCredentials: true })
+        axios.post(`http://localhost:3000/api/user/${values.email}`, values, { withCredentials: true })
             .then(res => {
                 if (res.data.msg === 'Successfully connected') {
                     history.push("/history");

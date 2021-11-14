@@ -36,8 +36,8 @@ export default function Form(props) {
 
     const handleSubmit = () => {
         if (mode === 'addPlayer') {
-            axios.post("https://penarol-app.herokuapp.com/api/player", values, { withCredentials: true })
-            // axios.post(`http://localhost:3000/api/player`, values,  { withCredentials: true })
+            // axios.post("https://penarol-app.herokuapp.com/api/player", values, { withCredentials: true })
+            axios.post(`http://localhost:3000/api/player`, values,  { withCredentials: true })
                 .then((res) => {
                     setMessage(res.data);
                 })
@@ -47,8 +47,8 @@ export default function Form(props) {
             setOpen(true);
         }
         else {
-            axios.put(`https://penarol-app.herokuapp.com/api/player/${values.Id}`, values, { withCredentials: true })
-            // axios.put(`http://localhost:3000/api/player/${values.Id}`, values, { withCredentials: true })
+            // axios.put(`https://penarol-app.herokuapp.com/api/player/${values.Id}`, values, { withCredentials: true })
+            axios.put(`http://localhost:3000/api/player/${values.Id}`, values, { withCredentials: true })
                 .then(res => {
                     setMessage(res.data);
                 })

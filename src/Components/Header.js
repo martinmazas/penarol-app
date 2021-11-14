@@ -13,8 +13,8 @@ export default function Header() {
     const handleClick = (mode) => {
         setNavValues(0);
         mode === 'logout' ?
-            axios.get(`https://penarol-app.herokuapp.com/api/user/logout`)
-            // axios.get(`http://localhost:3000/api/user/logout`)
+            // axios.get(`https://penarol-app.herokuapp.com/api/user/logout`)
+            axios.get(`http://localhost:3000/api/user/logout`)
                 .then(docs => {
                     if (docs.data === 'Successfully logout') {
                         cookies.remove('token');

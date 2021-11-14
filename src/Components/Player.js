@@ -36,8 +36,8 @@ export default function Player(props) {
     }, [setNavValues]);
 
     const getPlayers = () => {
-        axios.get(`https://penarol-app.herokuapp.com/api/player`)
-        // axios.get(`http://localhost:3000/api/player`)
+        // axios.get(`https://penarol-app.herokuapp.com/api/player`)
+        axios.get(`http://localhost:3000/api/player`)
             .then((res) => {
                 setPlayers(res.data);
                 setFilteredPlayers(res.data);
@@ -47,8 +47,8 @@ export default function Player(props) {
     }
 
     const deletePlayer = (id, name) => {
-        axios.delete(`https://penarol-app.herokuapp.com/api/player/${id}&${name}`, { withCredentials: true })
-        // axios.delete(`http://localhost:3000/api/player/${id}&${name}`, { withCredentials: true })
+        // axios.delete(`https://penarol-app.herokuapp.com/api/player/${id}&${name}`, { withCredentials: true })
+        axios.delete(`http://localhost:3000/api/player/${id}&${name}`, { withCredentials: true })
             .then(docs => {
                 if(docs.data === 'Successfully delete player') {
                     // getPlayers(); // Por ahora no lo necesito
