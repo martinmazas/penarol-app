@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import RecipeReviewCard from './RecipeViewCard';
 import axios from "axios";
 import { LanguageContext } from './LanguageContext';
+import CommonLoading from 'react-loading';
 // import Pagination from '@mui/material/Pagination';
 
 const styles = {
@@ -19,6 +20,9 @@ const styles = {
         marginLeft: '30%',
         height: '5ch'
     },
+    charging: {
+        marginLeft: '40%'
+    }
 }
 
 export default function Player(props) {
@@ -51,7 +55,7 @@ export default function Player(props) {
         // axios.delete(`http://localhost:3000/api/player/${id}&${name}`, { withCredentials: true })
             .then(docs => {
                 if(docs.data === 'Successfully delete player') {
-                    getPlayers(); // Por ahora no lo necesito
+                    getPlayers();
                 }
                 setPlayers(docs.data);
             })
@@ -82,7 +86,7 @@ export default function Player(props) {
                 <input style={styles.field} type="search" placeholder="Search a player..." onChange={(e) => handleSearch(e)} />
                 {filteredPlayers ? filteredPlayers.map(player => (
                     <RecipeReviewCard key={player._id} player={player} deletePlayer={deletePlayer} setValues={setValues} />
-                )) : <p style={{ color: 'white' }}>Charging...</p>}
+                )) : <div style={styles.charging}><CommonLoading color='#ffffff' /></div>}
                 <div style={{ backgroundColor: "yellow" }} >
                     {/* <Pagination count={Math.ceil(playersPerPage / 9)} /> */}
                 </div>
