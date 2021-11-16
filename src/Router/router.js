@@ -8,6 +8,7 @@ import Home from '../Components/Home';
 import Login from '../Components/LogIn';
 import Player from '../Components/Player';
 import Stadium from '../Components/Stadium';
+import Tables from '../Components/Tables';
 
 export default function ReactRouter() {
     const [values, setValues] = useState({
@@ -29,7 +30,7 @@ export default function ReactRouter() {
                 <Route path="/players" render={() => <Player setValues={setValues} />} />
                 <Route path="/stadium" component={Stadium} />
                 <Route path="/titles" component={Championships} />
-                <Route path="/matches" component={AcccessibleTable} />
+                <Route path="/matches" component={Tables} />
                 {document.cookie && <Route path="/addPlayer" render={() => <AddPlayer mode={'addPlayer'} values={values} setValues={setValues} />} />}
                 {document.cookie && <Route path="/editPlayer" render={() => <AddPlayer mode={'editPlayer'} values={values} setValues={setValues} />} />}
             </Switch>
