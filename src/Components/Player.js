@@ -3,22 +3,26 @@ import RecipeReviewCard from './RecipeViewCard';
 import axios from "axios";
 import { LanguageContext } from './LanguageContext';
 import CommonLoading from 'react-loading';
+import { TextField } from '@mui/material';
+import './style.css';
 // import Pagination from '@mui/material/Pagination';
 
 const styles = {
     wrapper: {
         width: '80%',
-        marginLeft: '20%',
+        marginLeft: '18%',
         marginTop: '5%',
-        FlexWrap: 'wrap',
+        flexWrap: 'wrap',
     },
     field: {
         display: 'block',
         backgroundColor: 'white',
+        marginTop: '5%',
         marginBottom: '5%',
-        width: '30%',
-        marginLeft: '30%',
-        height: '5ch'
+        width: '40%',
+        // margin: '5% 40%',
+        marginLeft: '5%',
+        // height: '5ch'
     },
     charging: {
         marginLeft: '40%'
@@ -81,8 +85,8 @@ export default function Player(props) {
 
     return (
         <div style={styles.wrapper}>
+            <TextField variant="outlined" style={styles.field} type="search" placeholder="Search a player..." onChange={(e) => handleSearch(e)} />
             {/* <TextField onChange={handleSearch} label='Search' fullWidth={true} style={styles.field} id="name-outlined-basic" /> */}
-            <input style={styles.field} type="search" placeholder="Search a player..." onChange={(e) => handleSearch(e)} />
             {filteredPlayers ? filteredPlayers.map(player => (
                 <RecipeReviewCard key={player._id} player={player} deletePlayer={deletePlayer} setValues={setValues} />
             )) : <div style={styles.charging}><CommonLoading color='#ffffff' /></div>}
