@@ -7,7 +7,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { LanguageContext } from './LanguageContext';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
+import CustomizedMenus from './CustomizedMenus';
 // import clausura from '../Text/clausura-21.json';
 
 function createData(team, pj, pg, pe, pp, gf, gc) {
@@ -18,17 +19,18 @@ function createData(team, pj, pg, pe, pp, gf, gc) {
 
 const styles = {
     root: {
-        marginTop: '2ch',
-        marginLeft: '55ch',
+        // marginTop: '2ch',
+        // marginLeft: '44ch',
+        margin: '2ch auto',
         paddingBottom: '5ch',
         width: '40%',
-        color: 'green'
+        // backgroundColor: 'red'
     },
     firstRow: {
         backgroundColor: 'grey'
     },
     buttons: {
-        marginLeft: '20ch',
+        // marginLeft: '50%',
         marginBottom: 5,
     }
 }
@@ -55,20 +57,20 @@ const aperturaTable = [
 const clausuraTable = [
     createData('Penarol', '12', '8', '3', "1", "22", "8"),
     createData('Cerro Largo', '12', '6', '6', "0", "20", "7"),
-    createData('Nacional', '12', '6', '3', "3", "16", "11"),
+    createData('Nacional', '13', '7', '3', "3", "17", "11"),
     createData('Progreso', '12', '6', '3', "3", "11", "6"),
     createData('Torque', '12', '6', '2', "4", "23", "17"),
-    createData('Wanderers', '12', '6', '2', "4", "17", "16"),
+    createData('Wanderers', '13', '7', '2', "4", "21", "17"),
     createData('Plaza Colonia', '12', '4', '5', "3", "13", "4"),
-    createData('Deportivo Maldonado', '12', '5', '2', "5", "11", "13"),
-    createData('Cerrito', '12', '4', '3', "5", "17", "20"),
+    createData('Deportivo Maldonado', '13', '5', '2', "6", "12", "15"),
+    createData('Cerrito', '13', '4', '3', "6", "17", "21"),
     createData('Boston River', '12', '4', '3', "5", "24", "6"),
-    createData('Fenix', '12', '3', '5', "4", "15", "16"),
+    createData('Fenix', '12', '4', '5', "4", "17", "17"),
     createData('Rentistas', '12', '4', '2', "6", "15", "17", "1"),
     createData('River Plate', '12', '3', '3', "6", "11", "15"),
-    createData('Liverpool', '12', '3', '2', "7", "9", "15"),
-    createData('Sud America', '12', '2', '4', "6", "9", "18"),
-    createData('Villa Espanola', '12', '1', '2', "9", "9", "26"),
+    createData('Liverpool', '13', '4', '2', "7", "12", "15"),
+    createData('Sud America', '13', '2', '4', "7", "10", "22"),
+    createData('Villa Espanola', '13', '1', '2', "10", "9", "29"),
 ];
 
 const anualPreparationTable = (tablePosition, type) => {
@@ -97,24 +99,32 @@ const anualTable = [
 
 export default function Tables(props) {
     const { language, setNavValues } = React.useContext(LanguageContext);
-    const [selectedTable, setSelectedTable] = React.useState(clausuraTable);
+    const [selectedTable, setSelectedTable] = React.useState(['Clausura 21', clausuraTable]);
     let position = 1;
 
     const changeTable = (name) => {
-        name === 'apertura' ? setSelectedTable(aperturaTable) : name === 'clausura' ? setSelectedTable(clausuraTable) : setSelectedTable(anualTable);
+        if (name.option.currentTarget) setSelectedTable([selectedTable[0], selectedTable[1]]);
+        else name.option === 'Apertura 21' ? setSelectedTable([name.option, aperturaTable]) : name.option === 'Clausura 21' ? setSelectedTable([name.option, clausuraTable]) : setSelectedTable([name.option, anualTable]);
     }
 
     React.useEffect(() => {
         setNavValues(3);
     })
 
+    const options = [
+        'Apertura 21',
+        'Clausura 21',
+        'Anual 21'
+    ]
+
     return (
         <div style={styles.root}>
-            <div style={styles.buttons}>
+            {/* <div style={styles.buttons}>
                 <Button onClick={() => changeTable('apertura')} variant={`${selectedTable === aperturaTable ? "contained" : "outlined"}`}>Apertura</Button>
                 <Button onClick={() => changeTable('clausura')} variant={`${selectedTable === clausuraTable ? "contained" : "outlined"}`}>Clausura</Button>
                 <Button onClick={() => changeTable('anual')} variant={`${selectedTable === anualTable ? "contained" : "outlined"}`}>Anual</Button>
-            </div>
+            </div> */}
+            <CustomizedMenus options={options} changeTable={changeTable} tableName={selectedTable[0]} />
             <TableContainer component={Paper}>
                 <Table aria-label="caption table">
                     {/* sx={{ minWidth: 650, backgroundColor: 'yellow' }} */}
@@ -133,20 +143,22 @@ export default function Tables(props) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {selectedTable.sort((a, b) => b['pt'] - a['pt']).map((row) => (
+                        {selectedTable[1].sort((a, b) => (
+                            b['pt'] - a['pt'] || b['df'] - a['df']
+                        )).map((row) => (
                             <TableRow key={row.team}>
                                 <TableCell style={{ backgroundColor: 'grey' }} component="th" scope="row">
-                                    {position++}.
+                                    {row.team === 'Penarol' ? <b>{position++}.</b> : position++ + '.'}
                                 </TableCell>
-                                <TableCell>{row.team}</TableCell>
-                                <TableCell>{row.pj}</TableCell>
-                                <TableCell>{row.pg}</TableCell>
-                                <TableCell>{row.pe}</TableCell>
-                                <TableCell>{row.pp}</TableCell>
+                                <TableCell>{row.team === 'Penarol' ? <b>{row.team}</b> : row.team}</TableCell>
+                                <TableCell>{row.team === 'Penarol' ? <b>{row.pj}</b> : row.pj}</TableCell>
+                                <TableCell>{row.team === 'Penarol' ? <b>{row.pg}</b> : row.pg}</TableCell>
+                                <TableCell>{row.team === 'Penarol' ? <b>{row.pe}</b> : row.pe}</TableCell>
+                                <TableCell>{row.team === 'Penarol' ? <b>{row.pp}</b> : row.pp}</TableCell>
                                 {/* <TableCell>{row.gf}</TableCell>
                             <TableCell>{row.gc}</TableCell> */}
-                                <TableCell>{row.df}</TableCell>
-                                <TableCell>{row.pt}</TableCell>
+                                <TableCell>{row.team === 'Penarol' ? <b>{row.df}</b> : row.df}</TableCell>
+                                <TableCell>{row.team === 'Penarol' ? <b>{row.pt}</b> : row.pt}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

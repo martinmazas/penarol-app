@@ -8,7 +8,7 @@ import CommonLoading from 'react-loading';
 const styles = {
     wrapper: {
         width: '80%',
-        marginLeft: '15%',
+        marginLeft: '20%',
         marginTop: '5%',
         FlexWrap: 'wrap',
     },
@@ -54,7 +54,7 @@ export default function Player(props) {
         axios.delete(`https://penarol-app.herokuapp.com/api/player/${id}&${name}`, { withCredentials: true })
         // axios.delete(`http://localhost:3000/api/player/${id}&${name}`, { withCredentials: true })
             .then(docs => {
-                if(docs.data === 'Successfully delete player') {
+                if (docs.data === 'Successfully delete player') {
                     getPlayers();
                 }
                 setPlayers(docs.data);
@@ -80,16 +80,14 @@ export default function Player(props) {
     }, [search])
 
     return (
-        <div>
-            <div style={styles.wrapper}>
-                {/* <TextField onChange={handleSearch} label='Search' fullWidth={true} style={styles.field} id="name-outlined-basic" /> */}
-                <input style={styles.field} type="search" placeholder="Search a player..." onChange={(e) => handleSearch(e)} />
-                {filteredPlayers ? filteredPlayers.map(player => (
-                    <RecipeReviewCard key={player._id} player={player} deletePlayer={deletePlayer} setValues={setValues} />
-                )) : <div style={styles.charging}><CommonLoading color='#ffffff' /></div>}
-                <div style={{ backgroundColor: "yellow" }} >
-                    {/* <Pagination count={Math.ceil(playersPerPage / 9)} /> */}
-                </div>
+        <div style={styles.wrapper}>
+            {/* <TextField onChange={handleSearch} label='Search' fullWidth={true} style={styles.field} id="name-outlined-basic" /> */}
+            <input style={styles.field} type="search" placeholder="Search a player..." onChange={(e) => handleSearch(e)} />
+            {filteredPlayers ? filteredPlayers.map(player => (
+                <RecipeReviewCard key={player._id} player={player} deletePlayer={deletePlayer} setValues={setValues} />
+            )) : <div style={styles.charging}><CommonLoading color='#ffffff' /></div>}
+            <div style={{ backgroundColor: "yellow" }} >
+                {/* <Pagination count={Math.ceil(playersPerPage / 9)} /> */}
             </div>
         </div>
     )
