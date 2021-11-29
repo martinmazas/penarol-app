@@ -9,12 +9,16 @@ import Paper from '@mui/material/Paper';
 import { LanguageContext } from './LanguageContext';
 // import Button from '@mui/material/Button';
 import CustomizedMenus from './CustomizedMenus';
+// import axios from "axios";
 // import clausura from '../Text/clausura-21.json';
 
-function createData(team, pj, pg, pe, pp, gf, gc) {
-    const df = Number(gf) - Number(gc);
-    const pt = Number(pg) * 3 + Number(pe);
-    return { team, pj, pg, pe, pp, gf, gc, df, pt };
+function createData(team, pj, pg, pe, pp, gf, gc, df, pt) {
+    // const df = Number(gf) - Number(gc);
+    // const pt = Number(pg) * 3 + Number(pe);
+    // if(test === 'apertura'){
+    //     console.log(team, df);
+    // }
+    return { team, pj, pg, pe, pp, df, pt };
 }
 
 const styles = {
@@ -35,76 +39,118 @@ const styles = {
     }
 }
 
-const aperturaTable = [
-    createData('Penarol', '15', '7', '7', "1", "22", "10"),
-    createData('Cerro Largo', '15', '6', '2', "7", "20", "22"),
-    createData('Nacional', '15', '9', '2', "4", "14", "9"),
-    createData('Progreso', '15', '2', '5', "8", "13", "26"),
-    createData('Torque', '15', '8', '1', "6", "26", "19"),
-    createData('Wanderers', '15', '5', '2', "8", "12", "16"),
-    createData('Plaza Colonia', '15', '11', '3', "1", "20", "7"),
-    createData('Deportivo Maldonado', '15', '3', '5', "7", "11", "22"),
-    createData('Cerrito', '15', '5', '4', "6", "14", "15"),
-    createData('Boston River', '15', '3', '5', "7", "14", "19"),
-    createData('Fenix', '15', '6', '3', "6", "20", "22"),
-    createData('Rentistas', '15', '4', '4', "7", "12", "21"),
-    createData('River Plate', '15', '7', '5', "3", "27", '20'),
-    createData('Liverpool', '15', '8', '3', "4", "20", '18'),
-    createData('Sud America', '15', '5', '3', "7", "15", '22'),
-    createData('Villa Espanola', '15', '1', '6', "8", "14", '26'),
-];
+// const ap21 = () => {
+//     axios.get(`http://localhost:3000/api/apertura21`)
+//     .then(res =>console.log(res.data[0].team));
+//     // delete(`http://localhost:3000/api/player/${id}&${name}`, { withCredentials: true })
+//     //         .then(docs => {
+//     //             if (docs.data === 'Successfully delete player') {
+//     //                 getPlayers();
+//     //             }
+//     //             setPlayers(docs.data);
+//     //         })
+//     //         .catch(err => console.log(err));
+// }
+// ap21();
 
-const clausuraTable = [
-    createData('Penarol', '12', '8', '3', "1", "22", "8"),
-    createData('Cerro Largo', '12', '6', '6', "0", "20", "7"),
-    createData('Nacional', '13', '7', '3', "3", "17", "11"),
-    createData('Progreso', '12', '6', '3', "3", "11", "6"),
-    createData('Torque', '12', '6', '2', "4", "23", "17"),
-    createData('Wanderers', '13', '7', '2', "4", "21", "17"),
-    createData('Plaza Colonia', '12', '4', '5', "3", "13", "4"),
-    createData('Deportivo Maldonado', '13', '5', '2', "6", "12", "15"),
-    createData('Cerrito', '13', '4', '3', "6", "17", "21"),
-    createData('Boston River', '12', '4', '3', "5", "24", "6"),
-    createData('Fenix', '12', '4', '5', "4", "17", "17"),
-    createData('Rentistas', '12', '4', '2', "6", "15", "17", "1"),
-    createData('River Plate', '12', '3', '3', "6", "11", "15"),
-    createData('Liverpool', '13', '4', '2', "7", "12", "15"),
-    createData('Sud America', '13', '2', '4', "7", "10", "22"),
-    createData('Villa Espanola', '13', '1', '2', "10", "9", "29"),
-];
+// const setAperturaTable = (ap) => {
+//     console.log(ap);
+//     ap.data.map(a => createData(a.team, a.pj, a.pe, a.pp, a.gf, a.gc));
+// }
+// const aperturaTable = [
+//     axios.get(`http://localhost:3000/api/apertura21`)
+//         .then(res => setAperturaTable(res))
+//     // createData('Penarol', '15', '7', '7', "1", "22", "10"),
+//     // createData('Cerro Largo', '15', '6', '2', "7", "20", "22"),
+//     // createData('Nacional', '15', '9', '2', "4", "14", "9"),
+//     // createData('Progreso', '15', '2', '5', "8", "13", "26"),
+//     // createData('Torque', '15', '8', '1', "6", "26", "19"),
+//     // createData('Wanderers', '15', '5', '2', "8", "12", "16"),
+//     // createData('Plaza Colonia', '15', '11', '3', "1", "20", "7"),
+//     // createData('Deportivo Maldonado', '15', '3', '5', "7", "11", "22"),
+//     // createData('Cerrito', '15', '5', '4', "6", "14", "15"),
+//     // createData('Boston River', '15', '3', '5', "7", "14", "19"),
+//     // createData('Fenix', '15', '6', '3', "6", "20", "22"),
+//     // createData('Rentistas', '15', '4', '4', "7", "12", "21"),
+//     // createData('River Plate', '15', '7', '5', "3", "27", '20'),
+//     // createData('Liverpool', '15', '8', '3', "4", "20", '18'),
+//     // createData('Sud America', '15', '5', '3', "7", "15", '22'),
+//     // createData('Villa Espanola', '15', '1', '6', "8", "14", '26'),
+// ];
 
-const anualPreparationTable = (tablePosition, type) => {
-    return Number(clausuraTable[tablePosition][type]) + Number(aperturaTable[tablePosition][type])
-}
+// const clausuraTable = [
+//     createData('Penarol', '12', '8', '3', "1", "22", "8"),
+//     createData('Cerro Largo', '12', '6', '6', "0", "20", "7"),
+//     createData('Nacional', '13', '7', '3', "3", "17", "11"),
+//     createData('Progreso', '12', '6', '3', "3", "11", "6"),
+//     createData('Torque', '12', '6', '2', "4", "23", "17"),
+//     createData('Wanderers', '13', '7', '2', "4", "21", "17"),
+//     createData('Plaza Colonia', '12', '4', '5', "3", "13", "4"),
+//     createData('Deportivo Maldonado', '13', '5', '2', "6", "12", "15"),
+//     createData('Cerrito', '13', '4', '3', "6", "17", "21"),
+//     createData('Boston River', '12', '4', '3', "5", "24", "6"),
+//     createData('Fenix', '12', '4', '5', "4", "17", "17"),
+//     createData('Rentistas', '12', '4', '2', "6", "15", "17"),
+//     createData('River Plate', '12', '3', '3', "6", "11", "15"),
+//     createData('Liverpool', '13', '4', '2', "7", "12", "15"),
+//     createData('Sud America', '13', '2', '4', "7", "10", "22"),
+//     createData('Villa Espanola', '13', '1', '2', "10", "9", "29"),
+// ];
 
-const anualTable = [
-    createData('Penarol', anualPreparationTable(0, "pj"), anualPreparationTable(0, "pg"), anualPreparationTable(0, "pe"), anualPreparationTable(0, "pp"), anualPreparationTable(0, "gf"), anualPreparationTable(0, "gc")),
-    createData('Cerro Largo', anualPreparationTable(1, "pj"), anualPreparationTable(1, "pg"), anualPreparationTable(1, "pe"), anualPreparationTable(1, "pp"), anualPreparationTable(1, "gf"), anualPreparationTable(1, "gc")),
-    createData('Nacional', anualPreparationTable(2, "pj"), anualPreparationTable(2, "pg"), anualPreparationTable(2, "pe"), anualPreparationTable(2, "pp"), anualPreparationTable(2, "gf"), anualPreparationTable(2, "gc")),
-    createData('Progreso', anualPreparationTable(3, "pj"), anualPreparationTable(3, "pg"), anualPreparationTable(3, "pe"), anualPreparationTable(3, "pp"), anualPreparationTable(3, "gf"), anualPreparationTable(3, "gc")),
-    createData('Torque', anualPreparationTable(4, "pj"), anualPreparationTable(4, "pg"), anualPreparationTable(4, "pe"), anualPreparationTable(4, "pp"), anualPreparationTable(4, "gf"), anualPreparationTable(4, "gc")),
-    createData('Wanderers', anualPreparationTable(5, "pj"), anualPreparationTable(5, "pg"), anualPreparationTable(5, "pe"), anualPreparationTable(5, "pp"), anualPreparationTable(5, "gf"), anualPreparationTable(5, "gc")),
-    createData('Plaza Colonia', anualPreparationTable(6, "pj"), anualPreparationTable(6, "pg"), anualPreparationTable(6, "pe"), anualPreparationTable(6, "pp"), anualPreparationTable(6, "gf"), anualPreparationTable(6, "gc")),
-    createData('Deportivo Maldonado', anualPreparationTable(7, "pj"), anualPreparationTable(7, "pg"), anualPreparationTable(7, "pe"), anualPreparationTable(7, "pp"), anualPreparationTable(7, "gf"), anualPreparationTable(7, "gc")),
-    createData('Cerrito', anualPreparationTable(8, "pj"), anualPreparationTable(8, "pg"), anualPreparationTable(8, "pe"), anualPreparationTable(8, "pp"), anualPreparationTable(8, "gf"), anualPreparationTable(8, "gc")),
-    createData('Boston River', anualPreparationTable(9, "pj"), anualPreparationTable(9, "pg"), anualPreparationTable(9, "pe"), anualPreparationTable(9, "pp"), anualPreparationTable(9, "gf"), anualPreparationTable(9, "gc")),
-    createData('Fenix', anualPreparationTable(10, "pj"), anualPreparationTable(10, "pg"), anualPreparationTable(10, "pe"), anualPreparationTable(10, "pp"), anualPreparationTable(10, "gf"), anualPreparationTable(10, "gc")),
-    createData('Rentistas', anualPreparationTable(11, "pj"), anualPreparationTable(11, "pg"), anualPreparationTable(11, "pe"), anualPreparationTable(11, "pp"), anualPreparationTable(11, "gf"), anualPreparationTable(11, "gc")),
-    createData('River Plate', anualPreparationTable(12, "pj"), anualPreparationTable(12, "pg"), anualPreparationTable(12, "pe"), anualPreparationTable(12, "pp"), anualPreparationTable(12, "gf"), anualPreparationTable(12, "gc")),
-    createData('Liverpool', anualPreparationTable(13, "pj"), anualPreparationTable(13, "pg"), anualPreparationTable(13, "pe"), anualPreparationTable(13, "pp"), anualPreparationTable(13, "gf"), anualPreparationTable(13, "gc")),
-    createData('Sud America', anualPreparationTable(14, "pj"), anualPreparationTable(14, "pg"), anualPreparationTable(14, "pe"), anualPreparationTable(14, "pp"), anualPreparationTable(14, "gf"), anualPreparationTable(14, "gc")),
-    createData('Villa Espanola', anualPreparationTable(15, "pj"), anualPreparationTable(15, "pg"), anualPreparationTable(15, "pe"), anualPreparationTable(15, "pp"), anualPreparationTable(15, "gf"), anualPreparationTable(15, "gc")),
-]
+// const anualPreparationTable = (tablePosition, type) => {
+//     // return Number(clausuraTable[tablePosition][type]) + Number(clausuraTable[tablePosition][type])
+//     return 'test';
+// }
 
+// const anualTable = [
+//     createData('Penarol', anualPreparationTable(0, "pj"), anualPreparationTable(0, "pg"), anualPreparationTable(0, "pe"), anualPreparationTable(0, "pp"), anualPreparationTable(0, "gf"), anualPreparationTable(0, "gc")),
+//     createData('Cerro Largo', anualPreparationTable(1, "pj"), anualPreparationTable(1, "pg"), anualPreparationTable(1, "pe"), anualPreparationTable(1, "pp"), anualPreparationTable(1, "gf"), anualPreparationTable(1, "gc")),
+//     createData('Nacional', anualPreparationTable(2, "pj"), anualPreparationTable(2, "pg"), anualPreparationTable(2, "pe"), anualPreparationTable(2, "pp"), anualPreparationTable(2, "gf"), anualPreparationTable(2, "gc")),
+//     createData('Progreso', anualPreparationTable(3, "pj"), anualPreparationTable(3, "pg"), anualPreparationTable(3, "pe"), anualPreparationTable(3, "pp"), anualPreparationTable(3, "gf"), anualPreparationTable(3, "gc")),
+//     createData('Torque', anualPreparationTable(4, "pj"), anualPreparationTable(4, "pg"), anualPreparationTable(4, "pe"), anualPreparationTable(4, "pp"), anualPreparationTable(4, "gf"), anualPreparationTable(4, "gc")),
+//     createData('Wanderers', anualPreparationTable(5, "pj"), anualPreparationTable(5, "pg"), anualPreparationTable(5, "pe"), anualPreparationTable(5, "pp"), anualPreparationTable(5, "gf"), anualPreparationTable(5, "gc")),
+//     createData('Plaza Colonia', anualPreparationTable(6, "pj"), anualPreparationTable(6, "pg"), anualPreparationTable(6, "pe"), anualPreparationTable(6, "pp"), anualPreparationTable(6, "gf"), anualPreparationTable(6, "gc")),
+//     createData('Deportivo Maldonado', anualPreparationTable(7, "pj"), anualPreparationTable(7, "pg"), anualPreparationTable(7, "pe"), anualPreparationTable(7, "pp"), anualPreparationTable(7, "gf"), anualPreparationTable(7, "gc")),
+//     createData('Cerrito', anualPreparationTable(8, "pj"), anualPreparationTable(8, "pg"), anualPreparationTable(8, "pe"), anualPreparationTable(8, "pp"), anualPreparationTable(8, "gf"), anualPreparationTable(8, "gc")),
+//     createData('Boston River', anualPreparationTable(9, "pj"), anualPreparationTable(9, "pg"), anualPreparationTable(9, "pe"), anualPreparationTable(9, "pp"), anualPreparationTable(9, "gf"), anualPreparationTable(9, "gc")),
+//     createData('Fenix', anualPreparationTable(10, "pj"), anualPreparationTable(10, "pg"), anualPreparationTable(10, "pe"), anualPreparationTable(10, "pp"), anualPreparationTable(10, "gf"), anualPreparationTable(10, "gc")),
+//     createData('Rentistas', anualPreparationTable(11, "pj"), anualPreparationTable(11, "pg"), anualPreparationTable(11, "pe"), anualPreparationTable(11, "pp"), anualPreparationTable(11, "gf"), anualPreparationTable(11, "gc")),
+//     createData('River Plate', anualPreparationTable(12, "pj"), anualPreparationTable(12, "pg"), anualPreparationTable(12, "pe"), anualPreparationTable(12, "pp"), anualPreparationTable(12, "gf"), anualPreparationTable(12, "gc")),
+//     createData('Liverpool', anualPreparationTable(13, "pj"), anualPreparationTable(13, "pg"), anualPreparationTable(13, "pe"), anualPreparationTable(13, "pp"), anualPreparationTable(13, "gf"), anualPreparationTable(13, "gc")),
+//     createData('Sud America', anualPreparationTable(14, "pj"), anualPreparationTable(14, "pg"), anualPreparationTable(14, "pe"), anualPreparationTable(14, "pp"), anualPreparationTable(14, "gf"), anualPreparationTable(14, "gc")),
+//     createData('Villa Espanola', anualPreparationTable(15, "pj"), anualPreparationTable(15, "pg"), anualPreparationTable(15, "pe"), anualPreparationTable(15, "pp"), anualPreparationTable(15, "gf"), anualPreparationTable(15, "gc")),
+// ]
 
 export default function Tables(props) {
     const { language, setNavValues } = React.useContext(LanguageContext);
-    const [selectedTable, setSelectedTable] = React.useState(['Clausura 21', clausuraTable]);
+    // const [aperturaTab, setAperturaTab] = React.useState([]);
+    // const [clausuraTab, setClausuraTab] = React.useState([]);
+    // const [anualTab, setAnualTab] = React.useState([]);
+    const [selectedTable, setSelectedTable] = React.useState(['Clausura 21', props.clausuraTab]);
     let position = 1;
+
+    // React.useEffect(() => {
+    //     setAnualTab(props.aperturaTab.map(team => ))
+    // }, [])
+
+    React.useEffect(() => {
+        // axios.get(`http://localhost:3000/api/apertura21/apertura`)
+        //     .then(res => setAperturaTab(res.data))
+        //     .catch(err => console.log(err));
+        // axios.get(`http://localhost:3000/api/clausura21/clausura`)
+        //     .then(res => setClausuraTab(res.data))
+        //     .catch(err => console.log(err));
+        selectedTable[1].map(tab => createData(tab.team, tab.pj, tab.pg, tab.pe, tab.pp, tab.gf, tab.gc, tab.df, tab.pt));
+    }, [selectedTable]);
+
+    // React.useEffect(() => {
+    //     // clausuraTab.map(cl => createData(cl.team, cl.pj, cl.pg, cl.pe, cl.pp, cl.gf, cl.gc, cl.df, cl.pt));
+    // });
+
 
     const changeTable = (name) => {
         if (name.option.currentTarget) setSelectedTable([selectedTable[0], selectedTable[1]]);
-        else name.option === 'Apertura 21' ? setSelectedTable([name.option, aperturaTable]) : name.option === 'Clausura 21' ? setSelectedTable([name.option, clausuraTable]) : setSelectedTable([name.option, anualTable]);
+        else name.option === 'Apertura 21' ? setSelectedTable([name.option, props.aperturaTab]) : name.option === 'Clausura 21' ? setSelectedTable([name.option, props.clausuraTab]) : setSelectedTable([name.option, props.clausuraTab]);
     }
 
     React.useEffect(() => {

@@ -10,7 +10,7 @@ import Player from '../Components/Player';
 import Stadium from '../Components/Stadium';
 import Tables from '../Components/Tables';
 
-export default function ReactRouter() {
+export default function ReactRouter(props) {
     const [values, setValues] = useState({
         Id: '',
         Name: '',
@@ -21,6 +21,7 @@ export default function ReactRouter() {
         Country: ''
     });
 
+
     return (
         <>
             <Switch>
@@ -30,7 +31,7 @@ export default function ReactRouter() {
                 <Route path="/players" render={() => <Player setValues={setValues} />} />
                 <Route path="/stadium" component={Stadium} />
                 {/* <Route path="/titles" component={Championships} /> */}
-                <Route path="/tables" component={Tables} />
+                <Route path="/tables" render={() => <Tables clausuraTab={props.clausuraTab} aperturaTab={props.aperturaTab} /> } />
                 {document.cookie && <Route path="/addPlayer" render={() => <AddPlayer mode={'addPlayer'} values={values} setValues={setValues} />} />}
                 {document.cookie && <Route path="/editPlayer" render={() => <AddPlayer mode={'editPlayer'} values={values} setValues={setValues} />} />}
             </Switch>
