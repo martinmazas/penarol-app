@@ -31,7 +31,7 @@ export default function ReactRouter(props) {
                 <Route path="/players" render={() => <Player setValues={setValues} />} />
                 <Route path="/stadium" component={Stadium} />
                 {/* <Route path="/titles" component={Championships} /> */}
-                <Route path="/tables" render={() => <Tables clausuraTab={props.clausuraTab} aperturaTab={props.aperturaTab} /> } />
+                <Route path="/tables" render={() => <Tables clausuraTab={props.clausuraTab} aperturaTab={props.aperturaTab} anualTab={props.anualTab} /> } />
                 {document.cookie && <Route path="/addPlayer" render={() => <AddPlayer mode={'addPlayer'} values={values} setValues={setValues} />} />}
                 {document.cookie && <Route path="/editPlayer" render={() => <AddPlayer mode={'editPlayer'} values={values} setValues={setValues} />} />}
             </Switch>
