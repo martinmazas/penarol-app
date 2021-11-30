@@ -30,7 +30,7 @@ function Navigation() {
                     <Tab href="/players" label={language === 'english' ? "Players" : "Jugadores"} />
                     <Tab href="/stadium" label={language === 'english' ? "Stadium" : "Estadio"} />
                     {/* <Tab href="/titles" label={language === 'english' ? "Titles" : "Titulos"} /> */}
-                    <Tab href="/tables" label={language === 'english' ? "Tables" : "Tablas"} />
+                    <Tab href="/tables" label={language === 'english' ? "Standings" : "Tablas"} />
                     {document.cookie ? <Tab href="/addPlayer" label={language === 'english' ? "Add/Edit player" : "Agregar/Editar jugador"} /> : null}
                 </Tabs>
             </Paper>

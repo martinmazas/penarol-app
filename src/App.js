@@ -30,17 +30,19 @@ function App() {
 
   useEffect(() => {
     const anual = [];
-    for (let i = 0; i < aperturaTab.length; i++) {
-      const pt = (Number(aperturaTab[i].pg) + Number(clausuraTab[i].pg)) * 3 + (Number(aperturaTab[i].pe) + Number(clausuraTab[i].pe));
-      const gf = Number(aperturaTab[i].gf) + Number(clausuraTab[i].gf);
-      const gc = Number(aperturaTab[i].gc) + Number(clausuraTab[i].gc);
-      anual.push({
-        id: i, team: aperturaTab[i].team, pj: Number(aperturaTab[i].pj) + Number(clausuraTab[i].pj), pg: Number(aperturaTab[i].pg) + Number(clausuraTab[i].pg),
-        pe: Number(aperturaTab[i].pe) + Number(clausuraTab[i].pe), pp: Number(aperturaTab[i].pp) + Number(clausuraTab[i].pp),
-        gf: gf, gc: gc, df: gf - gc, pt: pt
-      })
+    if (aperturaTab.length && clausuraTab.length) {
+      for (let i = 0; i < aperturaTab.length; i++) {
+        const pt = (Number(aperturaTab[i].pg) + Number(clausuraTab[i].pg)) * 3 + (Number(aperturaTab[i].pe) + Number(clausuraTab[i].pe));
+        const gf = Number(aperturaTab[i].gf) + Number(clausuraTab[i].gf);
+        const gc = Number(aperturaTab[i].gc) + Number(clausuraTab[i].gc);
+        anual.push({
+          id: i, team: aperturaTab[i].team, pj: Number(aperturaTab[i].pj) + Number(clausuraTab[i].pj), pg: Number(aperturaTab[i].pg) + Number(clausuraTab[i].pg),
+          pe: Number(aperturaTab[i].pe) + Number(clausuraTab[i].pe), pp: Number(aperturaTab[i].pp) + Number(clausuraTab[i].pp),
+          gf: gf, gc: gc, df: gf - gc, pt: pt
+        })
+      }
+      setAnualTab(anual);
     }
-    setAnualTab(anual);
   }, [aperturaTab, clausuraTab]);
 
   return (
